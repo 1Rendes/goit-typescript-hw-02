@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
+import { ImagesGalleryType } from "../../App.types";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-const ImageGallery = ({ imagesData, onGalleryClick }) => {
+const ImageGallery: React.FC<ImagesGalleryType> = ({
+  imagesData,
+  onGalleryClick,
+}) => {
   return (
     <ul className={css.imageList}>
       {imagesData.map((imageData) => (

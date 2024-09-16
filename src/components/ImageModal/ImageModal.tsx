@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
 import ReactModal from "react-modal";
 import css from "./ImageModal.module.css";
+import { ImageModalType } from "../../App.types";
 
-const ImageModal = ({ modalData, closeModal, modalIsOpen }) => {
+const ImageModal: React.FC<ImageModalType> = ({
+  modalData,
+  closeModal,
+  modalIsOpen,
+}) => {
   return (
     <ReactModal
       overlayClassName={css.backdrop}

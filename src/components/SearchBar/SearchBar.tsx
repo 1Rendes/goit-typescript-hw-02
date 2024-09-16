@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
+import { FormEvent } from "react";
+import { SearchBarType } from "../../App.types";
 import css from "./SearchBar.module.css";
-const SearchBar = ({ onClick }) => {
-  const handleSubmit = (e) => {
+const SearchBar: React.FC<SearchBarType> = ({ onClick }) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const form = e.target;
-    const prompt = form.elements.prompt.value.trim();
+    const form = e.target as HTMLFormElement;
+    const prompt: string = (
+      form.elements.namedItem("prompt") as HTMLInputElement
+    ).value.trim();
     onClick(prompt);
   };
 

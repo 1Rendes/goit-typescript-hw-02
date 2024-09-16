@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+import { LoadMoreButtonType } from "../../App.types";
 import css from "./LoadMoreButton.module.css";
-const LoadMoreButton = ({ page, onClick }) => {
+const LoadMoreButton: React.FC<LoadMoreButtonType> = ({ page, onClick }) => {
   const handlerLoadMore = () => {
     onClick(page);
   };

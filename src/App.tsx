@@ -8,23 +8,24 @@ import { Circles } from "react-loader-spinner";
 import LoadMoreButton from "./components/LoadMoreButton/LoadMoreButton";
 import css from "./App.module.css";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { ImagesData, ImageData, ResponcePhotosSearch } from "./App.types";
 
 const App = () => {
-  const [imagesData, setImagesData] = useState([]);
+  const [imagesData, setImagesData] = useState<ImagesData>([]);
   const [loader, setLoader] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  const [modalData, setModalData] = useState("");
+  const [modalData, setModalData] = useState<ImageData | undefined>(undefined);
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const onLoadMore = (page) => {
+  const onLoadMore = (page: number): void => {
     const newPage = page + 1;
     setPage(newPage);
     newPage === totalPage && toast.success("That's all results");
   };
 
-  const onSearch = (query) => {
+  const onSearch = (query: string): void => {
     setPage(1);
     if (!query) {
       toast.error("Please fill the request");
@@ -34,13 +35,15 @@ const App = () => {
     setImagesData([]);
   };
 
-  const onGalleryClick = (id) => {
+  const onGalleryClick = (id: number): void => {
     setIsOpen(true);
-    const element = imagesData.find((imageData) => imageData.id === id);
+    const element: ImageData | undefined = imagesData.find(
+      (imageData) => imageData.id === id
+    );
     setModalData(element);
   };
   const onModalClose = () => {
-    setModalData("");
+    setModalData(undefined);
     setIsOpen(false);
   };
 
@@ -48,7 +51,7 @@ const App = () => {
     if (!query) {
       return;
     }
-    async function fetchImages(query, page) {
+    async function fetchImages(query: string, page: number) {
       setLoader(true);
       const params = {
         client_id: "JWj_bCNUx3Fd2nBL7E1nsdRQrLZyjwxfSxU1LEDU88c",
@@ -57,7 +60,7 @@ const App = () => {
         per_page: 12,
       };
       try {
-        const responce = await axios.get(
+        const responce: ResponcePhotosSearch = await axios.get(
           `https://api.unsplash.com/search/photos`,
           { params }
         );
@@ -68,8 +71,8 @@ const App = () => {
         }
         setTotalPage(responce.data.total_pages);
         setImagesData((prevData) => [...prevData, ...responce.data.results]);
-      } catch (error) {
-        toast.error(error);
+      } catch (error: unknown) {
+        if (error instanceof Error) toast.error(error.message);
       } finally {
         setLoader(false);
       }
@@ -94,14 +97,14 @@ const App = () => {
         modalIsOpen={modalIsOpen}
         closeModal={onModalClose}
       />
-      <SearchBar onClick={onSearch} className={css.body} />
+      <SearchBar onClick={onSearch} />
 
       {imagesData.length > 0 && (
         <ImageGallery imagesData={imagesData} onGalleryClick={onGalleryClick} />
       )}
       {loader && (
         <Circles
-          wrapperStyle={{ justifyContent: "center", margin: 20 }}
+          wrapperStyle={{ justifyContent: "center", margin: "20px" }}
           height="80"
           width="80"
           color="#000000"
