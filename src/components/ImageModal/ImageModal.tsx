@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import ReactModal from "react-modal";
 import css from "./ImageModal.module.css";
-import { ImageModalType } from "../../App.types";
+import { ImageModalType } from "../../types";
 
 const ImageModal: React.FC<ImageModalType> = ({
   modalData,

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { ImagesGalleryType } from "../../App.types";
+import { ImagesGalleryType } from "../../types";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 

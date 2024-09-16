@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FormEvent } from "react";
-import { SearchBarType } from "../../App.types";
+import { SearchBarType } from "../../types";
 import css from "./SearchBar.module.css";
 const SearchBar: React.FC<SearchBarType> = ({ onClick }) => {
   const handleSubmit = (e: FormEvent) => {

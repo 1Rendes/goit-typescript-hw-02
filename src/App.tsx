@@ -8,7 +8,7 @@ import { Circles } from "react-loader-spinner";
 import LoadMoreButton from "./components/LoadMoreButton/LoadMoreButton";
 import css from "./App.module.css";
 import ImageModal from "./components/ImageModal/ImageModal";
-import { ImagesData, ImageData, ResponcePhotosSearch } from "./App.types";
+import { ImagesData, ImageData, ResponcePhotosSearch } from "./types";
 
 const App = () => {
   const [imagesData, setImagesData] = useState<ImagesData>([]);

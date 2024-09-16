@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { ImageCardType } from "../../App.types";
+import { ImageCardType } from "../../types";
 import css from "./ImageCard.module.css";
 
 const ImageCard: React.FC<ImageCardType> = ({ imageData, onGalleryClick }) => {
